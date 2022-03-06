@@ -1,0 +1,81 @@
+{% extends "myadmin/base.html" %}
+{% block main_body %}
+ <section class="content-header">
+      <h1>
+        数据更新
+        <small>职业规划管理系统后台管理</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="{% url 'myadmin_index' %}"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li class="active">数据信息管理</li>
+      </ol>
+    </section>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>880</h3>
+              <p>北京</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="{% url 'data_beijing' %}" class="small-box-footer">更多信息 <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>870<sup style="font-size: 20px"></sup></h3>
+              <p>上海 </p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="{% url 'data_shanghai' %}" class="small-box-footer">更多信息 <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>960</h3>
+
+              <p>广州</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="{% url 'data_guangzhou' %}" class="small-box-footer">更多信息 <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red table-responsive">
+            <div class="inner">
+                     <h3>850</h3>
+              <p>深圳</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="{% url 'data_shenzhen' %}" class="small-box-footer">更多信息 <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+
+
+      </div>
+
+    </section>
+{% endblock %}

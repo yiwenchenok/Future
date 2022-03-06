@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+        <link rel="stylesheet" href="{% static 'web/public/css/Pindex.css' %}" />
+        <link rel="stylesheet" href="{% static 'web/public/css/Pnav.css' %}">
+        <script src="{% static 'web/public/js/echarts.js' %}"></script>
+
+
+	</head>
+	<body class="body">
+
+	<div class="head clearfix">
+		<header class="header">
+            {% block title %}
+            {% endblock %}
+		</header>
+		</div>
+
+<div id="menu1">
+    <ul class="menu-top">
+        <li><a href="#" class="menu-button menu-drop"><span class="menu-label">请选择...</span></a>
+            <div class="menu-dropdown menu-dropdown3">
+                <div class="menu-row" ><h1>后端开发</h1>
+                    <ul class="menu-sub">
+                        <li><a href="{% url 'C_engineer' %}" class="menu-subbutton"><span class="menu-label">C++工程师</span></a></li>
+                        <li><a href="{% url 'java_engineer' %}" class="menu-subbutton"><span class="menu-label">Java工程师</span></a></li>
+                        <li><a href="{% url 'Python_engineer' %}" class="menu-subbutton"><span class="menu-label">Python工程师</span></a></li>
+                        <li><a href="{% url 'Android_engineer' %}" class="menu-subbutton"><span class="menu-label">安卓工程师</span></a></li>
+                        <li><a href="{% url 'iOS_engineer' %}" class="menu-subbutton"><span class="menu-label">iOS工程师</span></a></li>
+                        <li><a href="{% url 'Game_engineer' %}" class="menu-subbutton"><span class="menu-label">游戏研发工程师</span></a></li>
+                    </ul>
+                </div>
+                <div class="menu-row"><h1>前端开发</h1>
+                    <ul class="menu-sub">
+                        <li><a href="#" class="menu-subbutton"><span class="menu-label">前端工程师</span></a></li>
+                        <li><a href="#" class="menu-subbutton"><span class="menu-label">web前端</span></a></li>
+                        <li><a href="#" class="menu-subbutton"><span class="menu-label">PHP前端</span></a></li>
+                        <li><a href="#" class="menu-subbutton"><span class="menu-label">游戏前端</span></a></li>
+                        <li><a href="#" class="menu-subbutton"><span class="menu-label">网业设计师</span></a></li>
+                    </ul>
+                </div>
+                <div class="menu-row"><h1>数据</h1>
+                    <ul class="menu-sub">
+                        <li><a href="#" class="menu-subbutton"><span class="menu-label">大数据开发工程师</span></a></li>
+                        <li><a href="#" class="menu-subbutton"><span class="menu-label">数据分析师</span></a></li>
+                        <li><a href="#" class="menu-subbutton"><span class="menu-label">数据库工程师</span></a></li>
+                        <li><a href="#" class="menu-subbutton"><span class="menu-label">数据挖掘/模型</span></a></li>
+                    </ul>
+                </div>
+                <div class="menu-row"><h1>测试与运维</h1>
+                    <ul class="menu-sub">
+                        <li><a href="#" class="menu-subbutton"><span class="menu-label">测试工程师</span></a></li>
+                        <li><a href="#" class="menu-subbutton"><span class="menu-label">测试开发</span></a></li>
+                        <li><a href="#" class="menu-subbutton"><span class="menu-label">运维工程师</span></a></li>
+                        <li><a href="#" class="menu-subbutton"><span class="menu-label">运维开发工程师</span></a></li>
+                        <li><a href="#" class="menu-subbutton"><span class="menu-label">系统工程师</span></a></li>
+                        <li><a href="#" class="menu-subbutton"><span class="menu-label">网络工程师</span></a></li>
+                    </ul>
+                </div>
+                <div class="menu-row"><h1>人工智能/算法</h1>
+                    <ul class="menu-sub">
+                        <li><a href="#" class="menu-subbutton"><span class="menu-label">算法工程师</span></a></li>
+                        <li><a href="#" class="menu-subbutton"><span class="menu-label">深度学习</span></a></li>
+                        <li><a href="#" class="menu-subbutton"><span class="menu-label">图像识别</span></a></li>
+                        <li><a href="#" class="menu-subbutton"><span class="menu-label">自然语言处理</span></a></li>
+                        <li><a href="#" class="menu-subbutton"><span class="menu-label">机械学习</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="mainbox">
+			<ul class="clearfix nav1">
+				<li style="width: 22%">
+				<div class="box xpanel">
+					<div class="tit">各方向平均工资展示</div>
+                    {% block  average-wage %}
+
+                    {% endblock %}
+					</div>
+				<div class="box xpanel">
+					<div class="tit">不同方向就业人数对比</div>
+					<div class="boxnav" style="height:420px ;">
+						<div class="" style="height: 406px">
+                        {% block  Employment %}
+                        {% endblock %}
+                        </div>
+					</div>
+					</div>
+				</li>
+				<li style="width: 55%">
+				<div class="box xpanel">
+					<div class="boxnav" style="height: 855px; position: relative">
+					<div class="map"></div>
+                        {% block  Study %}
+                        {% endblock %}
+
+					</div>
+					</div>
+
+				<li style="width: 22%">
+				<div class="box xpanel">
+					<div class="tit">该专业使用技术占比词云</div>
+					<div class="boxnav"  style="height: 300px;">
+                    {% block  Proportion-wordcloud %}
+                    {% endblock %}
+					</div>
+					</div>
+
+					<div class="box xpanel">
+					<div class="tit">该方向下使用技术比例饼图</div>
+					<div class="boxnav" style="height: 450px;">
+                    {% block  Technical-proportion %}
+                    {% endblock %}
+
+					</div>
+					</div>
+
+				</li>
+				</ul>
+		</div>
+    </body>
+</html>
+

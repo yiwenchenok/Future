@@ -1,0 +1,27 @@
+{% extends 'web/base.html' %}
+{% block title  %}
+    <a href="{% url 'web_index' %}" style="text-decoration: none"><h3>Python工程师</h3></a>
+{% endblock %}
+
+{#各方向平均工资展示#}
+{% block  average-wage %}
+{#    <div class="boxnav" style="height: 330px;"></div>#}
+    <div class="boxnav" style="height: 330px;"></div>
+{% endblock %}
+
+{#不同方向就业人数对比#}
+{% block  Employment %}
+{% endblock %}
+
+{#学习路线#}
+{% block  Study %}
+{% endblock %}
+
+
+{#该专业使用技术占比词云#}
+{% block  Proportion-wordcloud %}
+{% endblock %}
+
+{#该方向下使用技术比例饼图#}
+{% block  Technical-proportion %}
+{% endblock %}
