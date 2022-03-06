@@ -1,2 +1,2 @@
-# Stay-Foolish
-Together for a Shared Future！
+求知若食，虚心若愚
+一起共创未来！
