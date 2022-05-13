@@ -1,0 +1,63 @@
+{% extends 'base_home.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="layui-container" style="margin-top: 50px">
+    <div class="layui-row layui-col-space10">
+      <div class="layui-col-md5">
+        <div class="grid-demo grid-demo-bg1"><img style="width: 100%;height: 100%" src="{{ JD_data.p_imag_scr }}"></img>
+        </div>
+      </div>
+      <div class="layui-col-md6">
+        <div class="grid-demo">
+          <div class="layui-card">
+            <div class="layui-card-header">
+              {{ JD_data.p_name }}
+            </div>
+            <hr>
+            <div class="layui-card-body">
+              <div class="layui-form-item">
+                <label class="layui-form-label">店铺名:</label>
+                <div class="layui-input-block">
+                  <input style="border: none" type="text" name="title" readonly lay-verify="required" value="{{ JD_data.p_shop }}"
+                         autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">商品价格:</label>
+                <div class="layui-input-block">
+                  <input style="border: none" type="text" name="title" readonly lay-verify="required" value="{{ JD_data.p_price }}"
+                         autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">品牌:</label>
+                <div class="layui-input-block">
+                  <input  style="border: none" type="text" name="title" readonly lay-verify="required" value="{{ JD_data.p_pinpai }}"
+                         autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">评价数量:</label>
+                <div class="layui-input-block">
+                  <input style="border: none" type="text" name="title" readonly lay-verify="required" value="{{ JD_data.p_comment_count }}"
+                         autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">商品规格:</label>
+                <div class="layui-input-block">
+                  {% for p in JD_data.p_detail %}
+                    {% for key, val in p.items %}
+                      <li><b>{{ key }}</b>: {{ val }}</li>
+                    {% endfor %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

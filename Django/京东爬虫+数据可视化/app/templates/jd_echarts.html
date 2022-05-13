@@ -1,0 +1,54 @@
+{% extends 'base_home.html' %}
+{% load static %}
+
+{% block extCSS %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+{% block content %}
+  <div class="layui-container" style="margin-top: 50px">
+    <section class="mainbox">
+      <div class="column">
+        <div class="panel line1">
+          <h2>销量与价格的关系</h2>
+          <div class="chart"></div>
+          <div class="panel-footer"></div>
+        </div>
+
+        <div class="panel line2">
+          <h2>不同性别鞋的的销量</h2>
+          <div class="chart"></div>
+          <div class="panel-footer"></div>
+        </div>
+
+        <div class="panel line3">
+          <h2>不同性别鞋占比图</h2>
+          <div class="chart"></div>
+          <div class="panel-footer"></div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="panel top10_shop" style="height: 6rem">
+          <h2>销量top10店铺 </h2>
+          <div class="chart" style="height: 5.6rem"></div>
+          <div class="panel-footer"></div>
+        </div>
+
+        <div class="panel top10-pinpai" style="height: 6rem">
+          <h2>销量top10品牌</h2>
+          <div class="chart" style="height: 5.6rem"></div>
+          <div class="panel-footer"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+{% endblock %}
+
+{% block extJS %}
+  {{ block.super }}
+  <script src="{% static 'js/flexible.js' %}"></script>
+  <script src="{% static 'js/jd_echarts.js' %}"></script>
+  <script>
+
+  </script>
+{% endblock %}

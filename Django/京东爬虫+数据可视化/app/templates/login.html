@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/login1.css' %}">
+    <title>登录</title>
+</head>
+
+<body>
+    <section>
+        <!-- 背景颜色 -->
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="box">
+            <!-- 背景圆 -->
+            <div class="circle" style="--x:0"></div>
+            <div class="circle" style="--x:1"></div>
+            <div class="circle" style="--x:2"></div>
+            <div class="circle" style="--x:3"></div>
+            <div class="circle" style="--x:4"></div>
+            <!-- 登录框 -->
+            <div class="container">
+                 <div class="form">
+                    <h2>登录</h2>
+                    <h2>{{ info }}</h2>
+                   <form action="{% url 'dologin' %}" method="post">
+                     {% csrf_token %}
+                          <div class="inputBox">
+                            <input type="text" name="name" class="form-control" placeholder="账号">
+                            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                          </div>
+                          <div class="inputBox">
+                            <input type="password" name="password"  class="form-control" placeholder="密码">
+                            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                          </div>
+                          <div class="row">
+                             <div class="inputBox">
+                            <input type="submit" value="登录">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                    href="{% url 'register' %}" style="text-decoration: none;color:black ">注册</a>
+                        </div>
+
+                          </div>
+                   </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

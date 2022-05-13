@@ -1,0 +1,70 @@
+{% extends 'base_home.html' %}
+{% load static %}
+{% block extCSS %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'css/product.css' %}">
+  <link rel="stylesheet" href="{% static 'css/file.css' %}">
+{% endblock %}
+{% block content %}
+  <div class="layui-container" style="">
+    <div id="J_goodsList" class="goods-list-v2 gl-type-3 J-goods-list">
+
+      <ul class="gl-warp clearfix" data-tpl="3">
+        {% load pagination_tags %}
+        {% autopaginate products %}
+        {% for product in products %}
+          <li data-sku="10044350042123" data-spu="" ware-type="0" class="gl-item">
+            <div class="gl-i-wrap">
+              <div class="p-img">
+                <a target="_blank" title="" href="{% url 'product_detail' %}?p_id={{ product.id }}">
+                  <img width="220" height="220" data-img="1" data-lazy-img="done" source-data-lazy-img=""
+                       src="{{ product.p_imag_scr }}">
+                </a>
+                <div data-lease="" data-catid="9757" data-venid="37360" data-presale="0" data-done="1"></div>
+              </div>
+              <div class="p-scroll">
+                <span class="ps-prev">&lt;</span>
+                <span class="ps-next">&gt;</span>
+                <div class="ps-wrap">
+                  <ul class="ps-main">
+                    <li class="ps-item">
+                      <a href="#" class="curr" title="安踏白/阳光黄/烂漫红-1">
+                        <img data-url="" data-presale="0" data-sku="10044350042123"
+                             data-img="1" data-lazy-img="done" class="" width="25" height="25" data-done="1"
+                             src="{{ product.p_imag_scr }}">
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="p-price">
+                <strong class="J_10044350042123" data-presale="0" data-done="1" stock-done="1">
+                  <em>￥</em><i data-price="10044350042123">{{ product.p_price }}</i>
+                </strong>
+              </div>
+              <div class="p-name p-name-type-2">
+                <a target="_blank" title="{{ product.p_name }}" href="{% url 'product_detail' %}?p_id={{ product.id }}">
+                  <em>{{ product.p_name }}</em>
+                  <i class="promo-words" id="J_AD_10044350042123"></i>
+                </a>
+              </div>
+              <div class="p-commit" data-done="1">
+                <strong><a id="J_comment_10044350042123"
+                           href="javascript:void(0)">{{ product.p_comment_count }}</a>条评价</strong>
+              </div>
+              <div class="p-shop" data-dongdong="" data-selfware="0" data-score="0" data-reputation="9" data-done="1">
+              <span class="J_im_icon"><a class="curr-shop hd-shopname"
+                                         href="javascript:void(0)" title="{{ product.p_shop }}">{{ product.p_shop }}</a></span>
+              </div>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+      <div class="page">
+        {% paginate using 'pagination/my_pagination.html' %}
+      </div>
+      <span class="clr"></span>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+  <!--顶部导航-->
+  <div class="layui-header my-header">
+    <div class="layui-container" style="padding: 0 0">
+      <ul class="layui-nav layui-bg-green">
+        <li class="layui-nav-item"><a href="{% url 'home' %}">京东球鞋数据分析网站</a></li>
+        <li class="layui-nav-item"><a href="{% url 'product_analyze' %}">数据分析</a></li>
+        <li class="layui-nav-item"><a href="{% url 'product_manage' 1 %}">商品管理</a></li>
+        <li class="layui-nav-item"><a href="{% url 'logout' %}">退出登录</a></li>
+        <li class="layui-nav-item"><a href="">你好：{{ request.session.user.username }}</a></li>
+      </ul>
+      <ul class="layui-nav layui-layout-right layui-bg-green">
+        <li class="layui-nav-item">
+          <form action="{% url 'home' %}" method="get" name="form">
+            <div class="my-search">
+              <input type="text" name="key_word" autocomplete="off" value="{{ key_word }}" placeholder="请输入搜索内容" class="search-input">
+              <i class="layui-icon layui-icon-search search-btn" onclick='javascript:form.submit()'></i>
+            </div>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <a href="javascript:void(0)" class="return_top">
+    <i class="layui-icon layui-icon-top"></i>
+  </a>
+{% endblock %}

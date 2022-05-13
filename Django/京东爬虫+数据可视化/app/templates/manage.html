@@ -1,0 +1,74 @@
+{% extends 'managebase.html' %}
+{% block main_body %}
+<section class="content-header">
+      <h1><i class="fa fa-database" ></i>
+        商品管理
+      </h1>
+      <ol class="breadcrumb">
+      </ol>
+    </section>
+    <section class="content container-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box" >
+            <div class="box-header">
+              <h3 class="box-title label label-success "STYLE="font-size: 18px">商品信息</h3>
+                 <div class="box-tools" >
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tr>
+                  <th>商品id</th>
+                  <th>商品名称</th>
+                  <th>商品价格</th>
+                  <th>商品图</th>
+                  <th>商品店铺</th>
+                  <th>评价数</th>
+                  <th>品牌</th>
+                  <th>适合范围</th>
+                </tr>
+                {% for vo in userlist %}
+                <tr>
+                    <td>{{ vo.product_id }}</td>
+                    <td width="20%">{{ vo.p_name }}</td>
+                     <td>{{ vo.p_price }}</td>
+                     <td><img src="{{ vo.p_imag_scr }}" alt=""></td>
+                     <td>{{ vo.p_shop }}</td>
+                     <td>{{ vo.p_comment_count }}</td>
+                     <td>{{ vo.p_pinpai}}</td>
+                     <td>{{ vo.p_gender}}</td>
+                    <td>
+                        <button type="button" onclick="Delete('{% url 'delete' vo.id %}')" class="btn btn-danger btn-xs">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除</button>
+                         <a href="{% url 'edit' vo.id %}" class="btn btn-success btn-xs">
+                      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a></td>
+                </tr>
+                {% endfor %}
+              </table>
+            </div>
+
+           <div class="box-footer clearfix">
+               <ul class="pagination pagination-sm no-margin pull-right">
+                <li><a href="{% url 'product_manage' pIndex|add:-1 %}">&laquo</a></li>
+                <li><a href="{% url 'product_manage' 1 %}">1</a></li>
+                  <li><a href="">....</a></li>
+                  <li class="active"><a href="{% url 'product_manage' pIndex %}">{{ pIndex }}</a></li>
+
+                  <li><a href="{% url 'product_manage' maxpages %}">{{ maxpages }}</a></li>
+                <li><a href="{% url 'product_manage' pIndex|add:1 %}">&raquo;</a></li>
+              </ul><a role="button" href="{% url "add" %}" class="btn btn-primary btn-xs">
+                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加</a>
+            </div>
+
+            </div>
+          </div>
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+
+    </section>
+
+{% endblock %}
