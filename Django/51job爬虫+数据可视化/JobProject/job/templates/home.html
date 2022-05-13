@@ -1,0 +1,195 @@
+{% extends 'base_home.html' %}
+{% load static %}
+{% block extCSS %}
+  {{ block.super }}
+  {#    <link rel="stylesheet" href="{% static 'css/product.css' %}">#}
+  <link rel="stylesheet" href="{% static 'css/jon_home.css' %}">
+{% endblock %}
+{% block content %}
+  <div class="layui-container" style="margin-top: 20px">
+    <div class="layui-row" style="background: white">
+      <div class="layui-col-md10" style="padding-top: 10px">
+        <form class="layui-form" action="" method="get">
+          <div class="layui-form-item">
+            <label class="layui-form-label">工作名：</label>
+            <div class="layui-input-block">
+              <input type="text" name="job_name" placeholder="请输入工作名称" autocomplete="off" class="layui-input"
+                     value="{{ job_name }}">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">城市：</label>
+            <div class="layui-input-block">
+              <select name="city">
+                {% if city %}
+                  <option value="{{ city }}" selected>{{ city }}</option>
+                {% endif %}
+                <option value="">请选择一个城市</option>
+                <option value="北京">北京</option>
+                <option value="上海">上海</option>
+                <option value="广州">广州</option>
+                <option value="深圳">深圳</option>
+                <option value="杭州">杭州</option>
+                <option value="苏州">苏州</option>
+                <option value="长沙">长沙</option>
+                <option value="武汉">武汉</option>
+                <option value="天津">天津</option>
+                <option value="成都">成都</option>
+                <option value="西安">西安</option>
+                <option value="东莞">东莞</option>
+                <option value="合肥">合肥</option>
+                <option value="佛山">佛山</option>
+                <option value="宁波">宁波</option>
+                <option value="南京">南京</option>
+                <option value="重庆">重庆</option>
+                <option value="长春">长春</option>
+                <option value="郑州">郑州</option>
+                <option value="常州">常州</option>
+                <option value="福州">福州</option>
+                <option value="沈阳">沈阳</option>
+                <option value="济南">济南</option>
+                <option value="宁波">宁波</option>
+                <option value="厦门">厦门</option>
+                <option value="贵州">贵州</option>
+                <option value="珠海">珠海</option>
+                <option value="青岛">青岛</option>
+                <option value="中山">中山</option>
+                <option value="大连">大连</option>
+                <option value="昆山">昆山</option>
+                <option value="惠州">惠州</option>
+                <option value="哈尔滨">哈尔滨</option>
+                <option value="昆明">昆明</option>
+                <option value="南昌">南昌</option>
+                <option value="无锡">无锡</option>
+              </select>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">薪资范围：</label>
+            <div class="layui-input-block">
+              <input type="radio" name="salary" value="" title="所有" checked>
+              <input type="radio" name="salary" value="0-2000" title="2千以下">
+              <input type="radio" name="salary" value="2000-3000" title="2-3千">
+              <input type="radio" name="salary" value="3000-4500" title="3-4.5千">
+              <input type="radio" name="salary" value="4500-6000" title="4.5-6千">
+              <input type="radio" name="salary" value="6000-8000" title="6-8千">
+              <input type="radio" name="salary" value="8000-10000" title="0.8-1万">
+              <input type="radio" name="salary" value="10000-15000" title="1-1.5万">
+              <input type="radio" name="salary" value="15000-20000" title="1.5-2万">
+              <input type="radio" name="salary" value="20000-50000" title="2-5万">
+              <input type="radio" name="salary" value="50000-10000000" title="5万以上">
+              {% if salary %}
+                <input type="radio" name="salary" checked value="{{ salary }}" title="{{ salary }}">
+              {% endif %}
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">学历：</label>
+            <div class="layui-input-block">
+              <input type="radio" name="education" value="" title="所有" checked>
+              <input type="radio" name="education" value="高中" title="高中">
+              <input type="radio" name="education" value="中技" title="中技">
+              <input type="radio" name="education" value="中专" title="中专">
+              <input type="radio" name="education" value="大专" title="大专">
+              <input type="radio" name="education" value="本科" title="本科">
+              <input type="radio" name="education" value="硕士" title="硕士">
+              <input type="radio" name="education" value="博士" title="博士">
+              <input type="radio" name="education" value="无学历要求" title="无学历要求">
+              {% if education %}
+                <input type="radio" name="education" checked value="{{ education }}" title="{{ education }}">
+              {% endif %}
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">公司性质：</label>
+            <div class="layui-input-block">
+              <input type="radio" name="companytype_text" value="" title="所有" checked>
+              <input type="radio" name="companytype_text" value="国企" title="国企">
+              <input type="radio" name="companytype_text" value="上市公司" title="上市公司">
+              <input type="radio" name="companytype_text" value="外资" title="外资">
+              <input type="radio" name="companytype_text" value="民营公司" title="民营公司">
+              <input type="radio" name="companytype_text" value="合资" title="合资">
+              <input type="radio" name="companytype_text" value="政府机关" title="政府机关">
+              <input type="radio" name="companytype_text" value="事业单位" title="事业单位">
+              <input type="radio" name="companytype_text" value="创业公司" title="创业公司">
+              {% if companytype_text %}
+                <input type="radio" name="companytype_text" checked value="{{ companytype_text }}"
+                       title="{{ companytype_text }}">
+
+              {% endif %}
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">员工数：</label>
+            <div class="layui-input-block">
+              <input type="radio" name="companysize_text" value="" title="所有" checked>
+              <input type="radio" name="companysize_text" value="少于50人" title="少于50人">
+              <input type="radio" name="companysize_text" value="50-150人" title="50-150人">
+              <input type="radio" name="companysize_text" value="150-500人" title="150-500人">
+              <input type="radio" name="companysize_text" value="500-1000人" title="500-1000人">
+              <input type="radio" name="companysize_text" value="1000-5000人" title="1000-5000人">
+              <input type="radio" name="companysize_text" value="5000-10000人" title="5000-10000人">
+              <input type="radio" name="companysize_text" value="10000人以上" title="10000人以上">
+              {% if companysize_text %}
+                <input type="radio" name="companysize_text" checked value="{{ companysize_text }}"
+                       title="{{ companysize_text }}">
+              {% endif %}
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">工作年限：</label>
+            <div class="layui-input-block">
+              <input type="radio" name="working_years" value="" title="所有" checked>
+              <input type="radio" name="working_years" value="1年经验" title="1年经验">
+              <input type="radio" name="working_years" value="2年经验" title="2年经验">
+              <input type="radio" name="working_years" value="3-4年经验" title="3-4年经验">
+              <input type="radio" name="working_years" value="5-7年经验" title="5-7年经验">
+              <input type="radio" name="working_years" value="8-9年经验" title="8-9年经验">
+              <input type="radio" name="working_years" value="无需经验" title="无需经验">
+              {% if working_years %}
+                <input type="radio" name="working_years" value="{{ working_years }}" title="{{ working_years }}">
+              {% endif %}
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <div class="layui-input-block">
+              <button class="layui-btn-xs layui-btn" type="submit" lay-submit lay-filter="formDemo">查询</button>
+              <button type="reset" class="layui-btn-xs layui-btn layui-btn-primary">重置</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="layui-row" style="margin-top: 30px">
+      <div class="layui-col-md12">
+        <div class="j_joblist">
+          {% load pagination_tags %}
+          {% autopaginate jobs %}
+          {% for job in jobs %}
+            <div class="e">
+              <div class="e_icons ick"></div>
+              <a href="{{ job.job_href }}" target="_blank"
+                 class="el"><p class="t"><span title="{{ job.job_name }}" class="jname at">{{ job.job_name }}</span>
+                <span
+                    class="time">{{ job.issuedate }}</span> <!----> <!----> <!----> <!----> <!----></p>
+                <p class="info"><span class="sal">{{ job.providesalary_text }}</span> <span
+                    class="d at">{{ job.attribute_text }}</span>
+                </p>
+                <p title="专业培训 绩效奖金 年终奖金 定期体检 五险一金 员工旅游" class="tags">
+                  <span><i>{{ job.jobwelf }}</i></span></p></a>
+              <div class="er"><a href="javascript:" title="富士康科技集团CMBU"
+                                 class="cname at">{{ job.company_name }}</a>
+                <p class="dc at">{{ job.companytype_text }} | {{ job.companysize_text }}</p>
+                <p class="int at">{{ job.companyind_text }}</p>
+              </div>
+            </div>
+          {% endfor %}
+          <div class="page" style="height: 60px; background: white; text-align: center; padding-top: 40px">
+            {% paginate using 'pagination/my_pagination.html' %}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+{% endblock %}

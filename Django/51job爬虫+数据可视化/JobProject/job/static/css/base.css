@@ -1,0 +1,30 @@
+
+body {
+    background-color: #f2f2f2;
+}
+
+.my-header {
+    background-color:#2F4056;
+    height: auto !important;
+}
+
+/*返回顶部*/
+.return_top {
+    position: fixed;
+    display: none;
+    bottom: 80px;
+    right: 0;
+    width: 70px;
+    height: 70px;
+    background-color: #2F4056  !important;
+    text-align: center;
+    border-radius: 50%;
+    z-index: 999;
+    font: 18px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif !important;
+
+}
+
+.return_top i {
+    font-size: 60px !important;
+    color: white;
+}

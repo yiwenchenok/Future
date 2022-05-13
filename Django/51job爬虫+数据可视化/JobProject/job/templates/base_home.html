@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+  <!--顶部导航-->
+  <div class="layui-header my-header">
+    <div class="layui-container" style="padding: 0 0">
+      <ul class="layui-nav layui-bg-cyan">
+        <li class="layui-nav-item"><a href="{% url 'home' %}">职位查询分析网站</a></li>
+        <li class="layui-nav-item"><a href="{% url 'data_show' %}">数据分析</a></li>
+      </ul>
+    </div>
+  </div>
+  <a href="javascript:void(0)" class="return_top">
+    <i class="layui-icon layui-icon-top"></i>
+  </a>
+{% endblock %}

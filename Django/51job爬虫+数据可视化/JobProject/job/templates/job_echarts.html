@@ -1,0 +1,38 @@
+{% extends 'base_home.html' %}
+{% load static %}
+
+{% block extCSS %}
+  {{ block.super }}
+  {#    <link rel="stylesheet" href="{% static 'css/index.css' %}">#}
+  <style>
+  </style>
+{% endblock %}
+{% block content %}
+  <div class="layui-container" style="margin-top: 50px">
+
+    <div class="layui-row">
+      <div class="layui-col-m12">
+        <div id="chart1" style="min-height: 450px; background: white"></div>
+      </div>
+      <hr class="layui-border-red">
+      <div class="layui-col-m12">
+        <div id="chart2" style="min-height: 450px; background: white"></div>
+      </div>
+      <hr class="layui-border-red">
+      <div class="layui-col-m12">
+        <div id="chart-map" style="min-height: 500px; background: white"></div>
+      </div>
+      <hr class="layui-border-red">
+      <div class="layui-col-m12">
+        <div id="chart3" style="min-height: 450px; background: white"></div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block extJS %}
+  {{ block.super }}
+  <script src="{% static 'js/data-geo.js' %}"></script>
+  <script src="{% static 'js/job_echarts.js' %}"></script>
+{% endblock %}
