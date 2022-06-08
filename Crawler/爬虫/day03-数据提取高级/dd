@@ -1,0 +1,6 @@
+'\n                        <i class="board-index board-index-1">1</i>\n    <a href="/films/16087" title="解放1-5(4K)" class="image-link" data-act="boarditem-click" data-val="{movieId:16087}">\n      <img src="//s3plus.meituan.net/v1/mss_e2821d7f0cfe4ac1bf9202ecf9590e67/cdn-prod/file:5788b470/image/loading_2.e3d934bf.png" alt="" class="poster-default" />\n      <img data-src="https://p1.meituan.net/movie/2ef746f44aee22bede3ee1012267469c43613.jpg@160w_220h_1e_1c" alt="解放1-5(4K)" class="board-img" />\n    </a>\n    <div class="board-item-main">\n      <div class="board-item-content">\n              <div class="movie-item-info">\n        <p class="name"><a href="/films/16087" title="解放1-5(4K)" data-act="boarditem-click" data-val="{movieId:16087}">解放1-5(4K)</a></p>\n        <p class="star">\n                主演：扬·恩格莱特,芭芭拉·布雷尔斯卡,达尼尔·奥勒布里斯基\n        </p>\n<p class="releasetime">上映时间：1970-1971(前苏联)</p>    </div>\n    <div class="movie-item-number score-num">\n<p class="score"><i class="integer">8.</i><i class="fraction">4</i></p>        \n    </div>\n\n      </div>\n    </div>\n\n                '
+
+
+<p class="name"><a href=".*?" title=".*?" data-act="boarditem-click" data-val="{.*?}">([\s\S]*?)</a></p>
+<p class="star">([\s\S]*?)</p>
+<p class="releasetime">([\s\S]*?)</p>

@@ -1,0 +1,13 @@
+{"domain": ".cnki.net", "expiry": 1656153139, "httpOnly": false, "name": "c_m_LinID", "path": "/", "secure": true, "value": "LinID=WEEvREcwSlJHSldTTEYyRkZSRjBDRGk1cXJpTnFjTWRIMTZodkhSb1FxMD0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&ot=06/25/2022 18:32:19"}
+{"domain": ".cnki.net", "expiry": 1653562941, "httpOnly": false, "name": "_pk_ses", "path": "/", "secure": true, "value": "*"}
+{"domain": ".cnki.net", "expiry": 2284713143, "httpOnly": false, "name": "Ecp_loginuserjf", "path": "/", "secure": true, "value": "13318011750"}
+{"domain": "www.cnki.net", "httpOnly": false, "name": "SID", "path": "/", "secure": true, "value": "zhuye091002"}
+{"domain": ".cnki.net", "expiry": 1687516342, "httpOnly": false, "name": "_pk_id", "path": "/", "secure": true, "value": "b2e07f88-097d-4b7f-8df7-1db42246d29d.1653561142.1.1653561142.1653561142."}
+{"domain": ".cnki.net", "httpOnly": false, "name": "Ecp_session", "path": "/", "secure": true, "value": "1"}
+{"domain": ".cnki.net", "expiry": 1669329141, "httpOnly": false, "name": "_pk_ref", "path": "/", "secure": true, "value": "%5B%22%22%2C%22%22%2C1653561142%2C%22https%3A%2F%2Flogin.cnki.net%2F%22%5D"}
+{"domain": "www.cnki.net", "expiry": 1656153139, "httpOnly": false, "name": "Ecp_notFirstLogin", "path": "/", "secure": true, "value": "tjtVEq"}
+{"domain": "www.cnki.net", "expiry": 1653647541, "httpOnly": false, "name": "cangjieConfig_NZKPT2", "path": "/", "secure": false, "value": "%7B%22status%22%3Atrue%2C%22startTime%22%3A%222021-12-23%22%2C%22endTime%22%3A%222022-05-26%22%2C%22orginHosts%22%3A%22kns.cnki.net%22%2C%22type%22%3A%22mix%22%2C%22poolSize%22%3A%2210%22%2C%22intervalTime%22%3A10000%2C%22persist%22%3Afalse%7D"}
+{"domain": ".cnki.net", "expiry": 1656153140, "httpOnly": false, "name": "LID", "path": "/", "secure": true, "value": "WEEvREcwSlJHSldTTEYyRkZSRjBDRGk1cXJpTnFjTWRIMTZodkhSb1FxMD0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!"}
+{"domain": ".cnki.net", "expiry": 4809234740, "httpOnly": false, "name": "Ecp_ClientId", "path": "/", "secure": true, "value": "c220526183202369106"}
+{"domain": ".cnki.net", "expiry": 1656153144, "httpOnly": false, "name": "c_m_expire", "path": "/", "secure": true, "value": "2022-06-25%2018%3A32%3A19"}
+{"domain": ".cnki.net", "expiry": 1656153139, "httpOnly": false, "name": "Ecp_LoginStuts", "path": "/", "secure": true, "value": "{\"IsAutoLogin\":false,\"UserName\":\"13318011750\",\"ShowName\":\"13318011750\",\"UserType\":\"jf\",\"BUserName\":\"\",\"BShowName\":\"\",\"BUserType\":\"\",\"r\":\"tjtVEq\"}"}
