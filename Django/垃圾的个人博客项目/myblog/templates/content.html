@@ -1,0 +1,276 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <div class="content-wrap"><!--内容-->
+        <div class="content">
+            <header class="news_header">
+                <h2>{{ detail_post.title }}</h2>
+                <ul>
+                    <li>{{ detail_post.author }} 发布于 {{ detail_post.modify_time|date:"Y-m-d" }}</li>
+                    <li>栏目：<a href="" title="" target="_blank">{{ detail_post.classify }}</a></li>
+                    <li>来源：<a href="" title="" target="_blank">{{ detail_post.source }}</a></li>
+                    <li>共 <strong>{{ detail_post.look }}</strong> 人围观</li>
+                </ul>
+            </header>
+            <article class="news_content">
+                {{ detail_post.content|safe }}
+            </article>
+            <div class="reprint">转载请说明出处：<a href="" title="" target="_blank">{{ detail_post.author }}</a> » <a href=""
+                                                                                                               title=""
+                                                                                                               target="_blank">欢迎来到个人技术博客</a>
+            </div>
+
+            <div class="zambia">
+                <a href="javascript:;" name="zambia" rel="{{ detail_post.id }}">
+                    <span class="glyphicon glyphicon-thumbs-up"></span> 赞（{{ detail_post.zan }}）
+                </a>
+            </div>
+            <div class="tags news_tags">标签：
+                {% for t in detail_post.tags.all %}
+                    <span data-toggle="tooltip" data-placement="bottom" title="查看关于 {{ t.name }} 的文章"><a
+                            href="">{{ t.name }}</a></span>
+                {% endfor %}
+
+            </div>
+
+
+            <nav class="page-nav">
+                {% if pre_post %}
+                    <span class="page-nav-prev">上一篇<br/>
+                        <a href="/detail/?id={{ pre_post.0.id }}" rel="prev">{{ pre_post.0.title }}</a>
+                </span>
+                {% endif %}
+
+
+                {% if next_post %}
+                    <span class="page-nav-next">下一篇<br/>
+                        <a href="/detail/?id={{ next_post.0.id }}" rel="next">{{ next_post.0.title }}</a>
+                </span>
+                {% endif %}
+
+
+            </nav>
+
+
+            <div class="content-block related-content visible-lg visible-md">
+                <h2 class="title"><strong>相关推荐</strong></h2>
+                <ul>
+                    {% for p in relation_post %}
+                        <li><a target="_blank" href=""><img src="/static/media/{{ p.img }}" alt="">
+                            <h3> {{ p.title }} </h3>
+                        </a></li>
+                    {% endfor %}
+
+
+                </ul>
+            </div>
+            <div class="content-block comment">
+                <h2 class="title"><strong>评论</strong></h2>
+                <form action="comment.php" method="post" class="form-inline" id="comment-form">
+                    {% csrf_token %}
+                    {# 构造一个隐藏域用来返回当前详情页的id #}
+                    <input type="hidden" id="commentId" value="{{ detail_post.id }}">
+                    <div class="comment-title">
+                        <div class="form-group">
+                            <label for="commentName">昵称：</label>
+                            <input type="text" name="commentName" class="form-control" id="commentName"
+                                   placeholder="技术博客">
+                        </div>
+                        <div class="form-group">
+                            <label for="commentEmail">邮箱：</label>
+                            <input type="email" name="commentEmail" class="form-control" id="commentEmail"
+                                   placeholder="admin@xxxx.com">
+                        </div>
+                    </div>
+                    <div class="comment-form">
+                        <textarea placeholder="你的评论可以一针见血" name="commentContent"></textarea>
+                        <div class="comment-form-footer"></div>
+
+                        <div class="comment-form-btn">
+                            <div class="comment-form-btn">
+                                <button type="submit" class="btn btn-default btn-comment" onclick="return false">提交评论
+                                </button>
+                                {# 阻止form默认提交刷新页面的方式 return false #}
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="comment-content">
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/内容-->
+
+{% endblock %}
+
+
+
+{% block script %}
+    <script type="text/javascript">
+        //页面加载
+        $('body').show();
+        $('.version').text(NProgress.version);
+        NProgress.start();
+        setTimeout(function () {
+            NProgress.done();
+            $('.fade').removeClass('out');
+        }, 1000);
+        //返回顶部按钮
+        $(function () {
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > 100) {
+                    $(".gotop").fadeIn();
+                } else {
+                    $(".gotop").hide();
+                }
+            });
+            $(".gotop").click(function () {
+                $('html,body').animate({'scrollTop': 0}, 500);
+            });
+        });
+        //提示插件启用
+        $(function () {
+            $('[data-toggle="popover"]').popover();
+        });
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+        //鼠标滑过显示 滑离隐藏
+        //banner
+        $(function () {
+            $(".carousel").hover(function () {
+                $(this).find(".carousel-control").show();
+            }, function () {
+                $(this).find(".carousel-control").hide();
+            });
+        });
+        //本周热门
+        $(function () {
+            $(".hot-content ul li").hover(function () {
+                $(this).find("h3").show();
+            }, function () {
+                $(this).find("h3").hide();
+            });
+        });
+        //相关推荐
+        $(function () {
+            $(".related-content ul li").hover(function () {
+                $(this).find("h3").show();
+            }, function () {
+                $(this).find("h3").hide();
+            });
+        });
+        //页面元素智能定位
+        $.fn.smartFloat = function () {
+            var position = function (element) {
+                var top = element.position().top; //当前元素对象element距离浏览器上边缘的距离
+                var pos = element.css("position"); //当前元素距离页面document顶部的距离
+                $(window).scroll(function () { //侦听滚动时
+                    var scrolls = $(this).scrollTop();
+                    if (scrolls > top) { //如果滚动到页面超出了当前元素element的相对页面顶部的高度
+                        if (window.XMLHttpRequest) { //如果不是ie6
+                            element.css({ //设置css
+                                position: "fixed", //固定定位,即不再跟随滚动
+                                top: 0 //距离页面顶部为0
+                            }).addClass("shadow"); //加上阴影样式.shadow
+                        } else { //如果是ie6
+                            element.css({
+                                top: scrolls  //与页面顶部距离
+                            });
+                        }
+                    } else {
+                        element.css({ //如果当前元素element未滚动到浏览器上边缘，则使用默认样式
+                            position: pos,
+                            top: top
+                        }).removeClass("shadow");//移除阴影样式.shadow
+                    }
+                });
+            };
+            return $(this).each(function () {
+                position($(this));
+            });
+        };
+        //启用页面元素智能定位
+        $(function () {
+            $("#search").smartFloat();
+        });
+
+        $(function () {
+            //ajax更新点赞值
+            $(".content .zambia a").click(function () {
+                var zambia = $(this);
+                var id = zambia.attr("rel"); //对应id
+                {#zambia.fadeOut(1000); //渐隐效果#}
+                $.ajax({
+                    type: "POST",
+                    url: "/zan/",
+                    data: "id=" + id,
+                    cache: false, //不缓存此页面
+                    success: function (data) {
+                        html = '<span class="glyphicon glyphicon-thumbs-up"></span> 赞（' + data + '）'
+                        zambia.html(html);
+                        {#zambia.fadeIn(1000); //渐显效果#}
+                    }
+                });
+                return false;
+            });
+
+            function req_comment(form_data) {
+                $.post('/comment/', form_data, function (res) {
+                    //data就是所有评论
+                    console.log(res)
+                    h_total = "";
+                    res.data.forEach(
+                        function (line) {
+                            h = '<li><span class="face"><img src="/static/images/icon/icon.png" alt=""></span> <span class="text"><strong>' + line.name + '</strong> (' + line.time + ') 说：<br/>' + line.content + '</span> </li>'
+                            h_total += h
+                        })
+                    html = "<ul>" + h_total + "</ul>"
+                    $(".comment-content").html(html)
+                })
+            }
+
+            $(".btn-comment").click(function () {
+                //用户点击评论
+                var commentName = $("#commentName").val()
+                var commentEmail = $("#commentEmail").val()
+                var commentContent = $("textarea[name='commentContent']").val()
+                var commentId = $("#commentId").val()
+                var csrfmiddlewaretoken = $("input[name='csrfmiddlewaretoken']").val()
+                if (commentName && commentEmail && commentContent && commentId) {
+                    //如果都不为空
+                    form_data = {
+                        "commentName": commentName,
+                        "commentEmail": commentEmail,
+                        "commentContent": commentContent,
+                        "commentId": commentId,
+                        "csrfmiddlewaretoken": csrfmiddlewaretoken,  //post请求必须携带上csrfmiddlewaretoken，否则就会报403
+                    }
+                    req_comment(form_data);
+
+                } else { //如果有空值
+                    return false
+                }
+
+            })
+
+
+            commentId = $("#commentId").val();
+            form_data = {
+                "commentId": commentId,
+                "csrfmiddlewaretoken": '{{csrf_token}}',
+            }
+            req_comment(form_data);  //页面一加载调用一次，返回所有评论
+
+
+        })
+
+
+    </script>
+{% endblock %}
+
+
+

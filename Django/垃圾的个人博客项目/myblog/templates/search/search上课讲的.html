@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block head %}
+    <title>搜索</title>
+    <style>
+
+        h2 {
+            line-height: 32px;
+            color: #666;
+            display: block;
+            font-size: 16px;
+            border-bottom: 2px solid #EEE;
+        }
+
+        .title strong {
+            border-bottom: 2px solid #3399CC;
+            display: inline-block;
+            position: relative;
+            bottom: -2px;
+            font-weight: normal;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+    <div class="content-wrap"><!--内容-->
+        <div class="content">
+            <h2 class="title"><strong>搜索结果: <span style="color: red">{{ query }}</span></strong></h2>
+            <div class="row">
+                {% for p in page.object_list %}
+                    <div class="news-list">
+                        <div class="news-img col-xs-5 col-sm-5 col-md-4"><a target="_blank" href="">
+                            <img src="/static/media/{{ p.object.img }}" style="height: 143px;"> </a></div>
+                        <div class="news-info col-xs-7 col-sm-7 col-md-8">
+                            <dl>
+                                <dt><a href="/detail/?id={{ p.id }}" target="_blank"> {{ p.object.title }} </a></dt>
+                                <dd><span class="name"><a href="" title="由 {{ p.object.author }} 发布"
+                                                          rel="author">{{ p.object.author }}</a></span>
+                                    <span class="identity"></span> <span
+                                            class="time"> {{ p.object.modify_time|date:"Y-m-d" }} </span>
+                                </dd>
+                                <dd class="text">
+                                    {% load filter %}
+                                    {{ p.object.content|safe|my_filter2:50 }}
+                                </dd>
+                            </dl>
+                            <div class="news_bot col-sm-7 col-md-8">
+                                    <span class="tags visible-lg visible-md">
+                                        {% for t in p.object.tags.all %}
+                                            <a href="">{{ t.name }}</a>
+                                        {% endfor %}
+                                    </span>
+                                <span class="look"> 共 <strong>{{ p.object.look }}</strong> 人围观</span></div>
+                        </div>
+                    </div>
+
+                {% empty %}
+                    <p>没有搜索到关于<span style="color: red">{{ query }}</span>的结果</p>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+{% endblock %}

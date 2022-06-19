@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>搜索</title>
+{% endblock head %}
+
+{% block body %}
+
+    <div class="content-wrap"><!--内容-->
+        <div class="content">
+
+                <h2 class="title"><strong>搜索</strong></h2>
+                <div class="row">
+
+                    {% for p in object_list %}
+
+                        <div class="news-list">
+                            <div class="news-img col-xs-5 col-sm-5 col-md-4"><a target="_blank" href=""><img
+                                    src="/static/media/{{ p.object.img }}" alt="">
+                            </a></div>
+                            <div class="news-info col-xs-7 col-sm-7 col-md-8">
+                                <dl>
+                                    <dt><a href="/detail/?id={{ p.object.id }}" target="_blank"> {{ p.object.title }} </a></dt>
+                                    <dd><span class="name"><a href="" title="由 {{ p.object.author.username }} 发布"
+                                                              rel="author">{{ p.object.author.username }} </a></span> <span
+                                            class="identity"></span> <span
+                                            class="time"> {{ p.object.modify_time|date:'Y-m-d' }} </span></dd>
+                                    {% load filter %}
+                                    <dd class="text">{{ p.object.content|my_filter:200|safe }}</dd>
+                                </dl>
+                                <div class="news_bot col-sm-7 col-md-8"><span class="tags visible-lg visible-md">
+                                    {% for t in p.object.tags.all %}
+                                        <a href="">{{ t.name }}</a>
+                                    {% endfor %}
+
+
+                                </span> <span class="look"> 共 <strong>{{ p.object.look }}</strong> 人围观</span></div>
+                            </div>
+                        </div>
+
+
+                    {% endfor %}
+
+
+                </div>
+                <div class="quotes" style="margin-top:15px">
+                    {% if page_obj.has_previous %}
+                        <a href="/search/?page=1&q={{ query }}">首页</a>
+                        <a href="/search/?page={{ page_obj.previous_page_number }}&q={{ query }}">上一页</a>
+                    {% else %}
+                        <a class="disabled">首页</a>
+                        <a class="disabled">上一页</a>
+                    {% endif %}
+
+                    {% for page in page_obj.paginator.page_range %}
+                        {% if page == page_obj.number %}
+                            <a class="current" href="/search/?page={{ page }}&q={{ query }}">{{ page }}</a>
+                        {% else %}
+                            <a href="/search/?page={{ page }}&q={{ query }}">{{ page }}</a>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+
+                        <a href="/search/?page={{ page_obj.next_page_number }}&q={{ query }}">下一页</a>
+                        <a href="/search/?page={{ page_obj.paginator.num_pages }}&q={{ query }}">尾页</a>
+                    {% else %}
+                        <a class="disabled">下一页</a>
+                        <a class="disabled">尾页</a>
+                    {% endif %}
+
+                </div>
+
+
+        </div>
+    </div>
+{% endblock body %}

@@ -1,0 +1,238 @@
+﻿<!doctype html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block head %}
+        <title>个人技术博客</title>
+    {% endblock %}
+
+
+    <link href="/static/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="/static/css/style.css" type="text/css" rel="stylesheet">
+    <link type="text/css" href="/static/css/nprogress.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="/static/js/html5shiv.min.js" type="text/javascript"></script>
+    <script src="/static/js/respond.min.js" type="text/javascript"></script>
+    <script src="/static/js/selectivizr-min.js" type="text/javascript"></script>
+    <![endif]-->
+    <link rel="apple-touch-icon-precomposed" href="/static/images/icon/icon.png">
+    <link rel="shortcut icon" href="/static/images/icon/favicon.ico">
+    <meta name="Keywords" content=""/>
+    <meta name="description" content=""/>
+    <script type="text/javascript">
+
+        //判断浏览器是否支持HTML5
+        /*window.onload = function() {
+            if (!window.applicationCache) {
+                window.location.href="ie.html";
+            }
+        }*/
+    </script>
+
+    <style>
+        #loginuser {
+            text-align: center;
+            width: 80%;
+            margin: 10px auto;
+            background: greenyellow;
+            border-radius: 25%;
+        }
+
+        #loginout {
+            text-align: center;
+            width: 80%;
+            margin: 10px auto;
+            background: yellow;
+            border-radius: 25%;
+        }
+    </style>
+</head>
+
+<body>
+<section class="container user-select">
+    <header>
+        <div class="hidden-xs header"><!--超小屏幕不显示-->
+            <h1 class="logo"><a href="index.html" title="个人技术博客"></a></h1>
+            <ul class="nav hidden-xs-nav">
+                {% if request.session.username %}
+                    <li id="loginuser">欢迎你，{{ request.session.username }}</li>
+                    <li id="loginout"><a href="/switcher/">退出</a></li>
+                {% else %}
+                    <li id="loginuser"><a href="/reg/">注册</a></li>
+                    <li id="loginout"><a href="/login/">登录</a></li>
+                {% endif %}
+
+                <li class="active"><a href="/index"><span class="glyphicon glyphicon-home"></span>网站首页</a></li>
+                <li><a href="/index/?classify=1"><span class="glyphicon glyphicon-erase"></span>网站前端</a></li>
+                <li><a href="/index/?classify=2"><span class="glyphicon glyphicon-inbox"></span>后端技术</a></li>
+                <li><a href="/admin"><span class="glyphicon glyphicon-globe"></span>管理系统</a></li>
+                <li><a href="about.html"><span class="glyphicon glyphicon-user"></span>关于我们</a></li>
+                <li><a href="friendly.html"><span class="glyphicon glyphicon-tags"></span>友情链接</a></li>
+            </ul>
+            <div class="feeds"><a class="feed feed-xlweibo" href="" target="_blank"><i></i>新浪微博</a> <a
+                    class="feed feed-txweibo" href="" target="_blank"><i></i>腾讯微博</a> <a class="feed feed-rss" href=""
+                                                                                         target="_blank"><i></i>订阅本站</a>
+                <a class="feed feed-weixin" data-toggle="popover" data-trigger="hover" title="微信扫一扫" data-html="true"
+                   data-content="<img src='/static/images/weixin.jpg' alt=''>" href="javascript:;"
+                   target="_blank"><i></i>关注微信</a></div>
+            <div class="wall"><a href="readerWall.html" target="_blank">读者墙</a> | <a href="tags.html" target="_blank">标签云</a>
+            </div>
+        </div>
+        <!--/超小屏幕不显示-->
+        <div class="visible-xs header-xs"><!--超小屏幕可见-->
+            <div class="navbar-header header-xs-logo">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#header-xs-menu" aria-expanded="false" aria-controls="navbar"><span
+                        class="glyphicon glyphicon-menu-hamburger"></span></button>
+            </div>
+            <div id="header-xs-menu" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav header-xs-nav">
+                    <li class="active"><a href="index.html"><span class="glyphicon glyphicon-home"></span>网站首页</a></li>
+                    <li><a href=""><span class="glyphicon glyphicon-erase"></span>网站前端</a></li>
+                    <li><a href=""><span class="glyphicon glyphicon-inbox"></span>后端技术</a></li>
+                    <li><a href=""><span class="glyphicon glyphicon-globe"></span>管理系统</a></li>
+                    <li><a href="about.html"><span class="glyphicon glyphicon-user"></span>关于我们</a></li>
+                    <li><a href="friendly.html"><span class="glyphicon glyphicon-tags"></span>友情链接</a></li>
+                </ul>
+                <form class="navbar-form" action="search.php" method="post" style="padding:0 25px;">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="请输入关键字">
+                        <span class="input-group-btn">
+            <button class="btn btn-default btn-search" type="submit">搜索</button>
+            </span></div>
+                </form>
+            </div>
+        </div>
+
+    </header>
+    <!--/超小屏幕可见-->
+
+
+    {% block body %}
+
+    {% endblock %}
+
+
+
+    <aside class="sidebar visible-lg"><!--右侧>992px显示-->
+        <div class="sentence"><strong>每日一句</strong>
+            {#            <h2>2015年11月1日 星期日</h2>#}
+            <h2 id="TimeDiv" style="font-size:14px;"></h2>
+            <p>{{ sen.content }}</p>
+        </div>
+        <div id="search" class="sidebar-block search" role="search">
+            <h2 class="title"><strong>搜索</strong></h2>
+            <form class="navbar-form" action="/search/" method="get">
+                <div class="input-group">
+                    <input type="text" class="form-control" size="35" placeholder="请输入关键字" name="q" >
+                    <span class="input-group-btn">
+                        <button class="btn btn-default btn-search" type="submit">搜索</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+        <div class="sidebar-block recommend">
+            <h2 class="title"><strong>热门推荐</strong></h2>
+            <ul>
+                {% for p in history_hop_post %}
+                    <li><a target="_blank" href="/detail/?id={{ p.id }}"> <span class="thumb"><img src="{{ p.thumb }}"></span>
+                        {#                        <span class="text">{{ p.title|truncatechars:25}}</span>#}
+                        <span class="text">{{ p.title|truncatechars:25 }}</span>
+                        <span class="text-muted">阅读({{ p.look }})</span></a></li>
+                {% endfor %}
+
+
+            </ul>
+        </div>
+        <div class="sidebar-block comment">
+            <h2 class="title"><strong>最新评论</strong></h2>
+            <ul>
+                <li data-toggle="tooltip" data-placement="top" title="站长的评论"><a target="_blank" href=""><span
+                        class="face"><img src="/static/images/icon/icon.png" alt=""></span> <span class="text"><strong>个人技术博客站长</strong> (2015-10-18) 说：<br/>
+          欢迎来到个人技术博客技术博客，在这里可以看到网站前端和后端的技术等 ...</span></a></li>
+                <li data-toggle="tooltip" data-placement="top" title="读者墙上的评论"><a target="_blank" href=""><span
+                        class="face"><img src="/static/images/icon/icon.png" alt=""></span> <span class="text"><strong>个人技术博客站长</strong> (2015-10-18) 说：<br/>
+          欢迎来到个人技术博客技术博客，在这里可以看到网站前端和后端的技术等 ...</span></a></li>
+                <li data-toggle="tooltip" data-placement="top" title="个人技术博客技术博客的SHORTCUT和ICON图标...的评论"><a
+                        target="_blank" href=""><span class="face"><img src="/static/images/icon/icon.png"
+                                                                        alt=""></span> <span class="text"><strong>个人技术博客站长</strong> (2015-10-18) 说：<br/>
+          欢迎来到个人技术博客技术博客，在这里可以看到网站前端和后端的技术等 ...</span></a></li>
+                <li data-toggle="tooltip" data-placement="top" title="个人技术博客技术博客的SHORTCUT和ICON图标...的评论"><a
+                        target="_blank" href=""><span class="face"><img src="/static/images/icon/icon.png"
+                                                                        alt=""></span> <span class="text"><strong>个人技术博客站长</strong> (2015-10-18) 说：<br/>
+          欢迎来到个人技术博客技术博客，在这里可以看到网站前端和后端的技术等 ...</span></a></li>
+                <li data-toggle="tooltip" data-placement="top" title="个人技术博客技术博客的SHORTCUT和ICON图标...的评论"><a
+                        target="_blank" href=""><span class="face"><img src="/static/images/icon/icon.png"
+                                                                        alt=""></span> <span class="text"><strong>个人技术博客站长</strong> (2015-10-18) 说：<br/>
+          欢迎来到个人技术博客技术博客，在这里可以看到网站前端和后端的技术等 ...</span></a></li>
+            </ul>
+        </div>
+    </aside>
+    <!--/右侧>992px显示-->
+
+</section>
+<div><a href="javascript:;" class="gotop" style="display:none;"></a></div>
+
+<!--/返回顶部-->
+<script src="/static/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+<script src="/static/js/nprogress.js" type="text/javascript"></script>
+<script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
+<script type="text/JavaScript">
+    window.onload = function () {
+        var oDiv = document.getElementById('TimeDiv');
+
+        function timego() {
+            var now = new Date();
+            var year = now.getFullYear();
+            var month = now.getMonth() + 1;
+            var date = now.getDate();
+            var week = now.getDay();
+            var hour = now.getHours();
+            var minute = now.getMinutes();
+            var second = now.getSeconds();
+            var str = year + '年' + month + '月' + date + '日 ' + toweek(week) + ' ' + todou(hour) + ':' + todou(minute) + ':' + todou(second);
+            oDiv.innerHTML = str;
+        }
+
+        timego();
+        setInterval(timego, 1000);
+    }
+
+    function toweek(n) {
+        if (n == 0) {
+            return '星期日';
+        } else if (n == 1) {
+            return '星期一';
+        } else if (n == 2) {
+            return '星期二';
+        } else if (n == 3) {
+            return '星期三';
+        } else if (n == 4) {
+            return '星期四';
+        } else if (n == 5) {
+            return '星期五';
+        } else {
+            return '星期六';
+        }
+    }
+
+    function todou(n) {
+        if (n < 10) {
+            return '0' + n;
+        } else {
+            return n;
+        }
+    }
+</script>
+
+
+{% block script %}
+
+{% endblock %}
+
+
+</body>
+</html>
