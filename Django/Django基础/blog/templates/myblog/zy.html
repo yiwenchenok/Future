@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+{% autoescape off %}  {# on:自动转义(默认) off:禁止转义 |safe禁止转义  |escape:开启转义 #}
+
+    {{ html|escape }}
+    {{ html|escape }}
+    {{ html }}
+    {{ html }}
+    {{ html }}
+    {{ html2|escape }}
+    {{ html2|escape }}
+    {{ html2 }}
+    {{ html2 }}
+
+{% endautoescape %}
+
+<hr>
+{# |safe表示禁止转义，也就是告诉django这个字符串是安全的 #}
+{{ html2|escape }}
+{{ html|safe }}
+{{ html2|safe }}
+
+</body>
+</html>

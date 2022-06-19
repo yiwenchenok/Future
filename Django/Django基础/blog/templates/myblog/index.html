@@ -1,0 +1,94 @@
+{% extends 'myblog/base.html' %}
+
+
+{% block body %}
+    {{ block.super }}  {# 调用父类中的模块中html #}
+
+
+    {% for p in ps %}
+        {% if not forloop.counter == 3 and forloop.counter|divisibleby:2 == 0 or forloop.counter == 4 %}  {# 对2取余 #}
+            <div class="day" style="background: #fef;">
+        {% else %}
+            <div class="day" style="background: #fff;">
+        {% endif %}
+
+
+
+    <div class="dayTitle"><h2></h2><a href="#">{{ p.pub_time|date:"Y-m-d h:i:s A D" }}</a>
+    </div>
+    <div class="postTitle">
+        <a class="postTitle2 vertical-middle" href="{% url "detail" p.id %}">
+            {% if forloop.counter < 2 %} {#  forloop.counter:以1开始的循环计数。#}
+                {% load blog_filter %}    {# 4.导入自定义过滤器模板 #}
+                <span style="color: red">{{ p.title|capfirst }} 序号：{{ forloop.counter|add:100|mod:1 }}
+            {% elif forloop.counter < 4 %}
+                <span style="color: green">{{ p.title|capfirst }} 序号：{{ forloop.counter|add:100|modTwo }}
+            {% else %}
+                <span style="color: blue">{{ p.title|capfirst }} 序号：{{ forloop.counter|add:100 }}
+            {% endif %}
+            </span></span></span>
+        </a>
+    </div>
+
+    <div class="postCon">
+        <div class="c_b_p_desc">
+            {#   {{ p.content|slice:"100" }}#}
+                {{ p.content|truncatechars:"100" }} {# 比slice多三个点 #}
+            <a href="/index/detail/{{ p.id }}" class="c_b_p_desc_readmore">阅读全文</a>
+            <img src="/static/media/{{ p.image }}" alt="" style="height:50px;width:100px;">
+
+
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="postDesc">posted @ {{ p.pub_time }}不掉发的羊驼
+        <a href="#" rel="nofollow">
+            编辑
+        </a>
+    </div>
+    <div class="clear"></div>
+    </div>
+
+    {% empty %}
+
+        <span style="color: red">抱歉，没有获取到数据</span>
+
+    {% endfor %}
+
+
+    <ul style="list-style-type: none">
+        {% if ps.has_previous %}
+            {# 如果有上一页 #}
+            <li style="display: inline-block"><a href="/index?p={{ ps.previous_page_number }}">上一页</a></li>
+        {% else %}
+            <li style="display: inline-block"><a disabled="disabled">上一页</a></li>
+        {% endif %}
+
+        {% for i in ps.paginator.page_range %}  {# ps是一个page对象，先需要拿到其对应的pagnitor对象，然后再拿page_range #}
+
+            {# 只显示当前页page.number左右的5页的页码 #}
+            {% if i > ps.number|add:-3 and i < ps.number|add:3 %}
+                <li style="display: inline-block"><a href="/index?p={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if ps.has_next %}
+            {# 如果有下一页 #}
+            <li style="display: inline-block"><a href="/index?p={{ ps.next_page_number }}">下一页</a></li>
+        {% else %}
+            <li style="display: inline-block"><a disabled="disabled">下一页</a></li>
+        {% endif %}
+
+
+    </ul>
+
+
+    <hr>
+    {{ "不掉发的羊驼"|join:"-" }}
+    {{ ps|length }}
+    <br><br><br><br><br><br><br><br><br><br>
+{% endblock %}
+
+
+
+</div>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index主页</title>
+</head>
+<body>
+<a href="/index">主页</a>
+<a href="{% url 'index' %}">主页2</a>
+<a href="/detail/1">详情1</a>
+<a href="/detail/2">详情2</a>
+<hr>
+{% for p in ps %}
+    标题：{{ p.title }}
+{% endfor %}
+
+
+</body>
+</html>

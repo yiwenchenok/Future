@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录界面</title>
+</head>
+<body>
+
+<form action="{% url 'post_do' %}" method="post">
+    {% csrf_token %}
+    用户名：<input type="text" name="username"><br>
+    密码：<input type="password" name="pwd"><br>
+    性别：<input type="radio" name="gender" value="男">男
+            <input type="radio" name="gender" value="女">女
+    <br>
+    爱好：
+    <input type="checkbox" name="love" value="唱">唱
+    <input type="checkbox" name="love" value="跳">跳
+    <input type="checkbox" name="love" value="rap">rap
+    <input type="checkbox" name="love" value="篮球">篮球
+    <br>
+
+    <input type="submit" value="提交">
+</form>
+
+
+
+</body>
+</html>

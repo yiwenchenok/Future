@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<body>
+<form action="/index/login/" method="post">
+    用户名：<input type="text" name="username" value="{{ username }}"><br>
+    密码：<input type="password" name="pwd" value="{{ pwd }}"><br>
+    <input type="submit" value="提交">
+</form>
+{% if not is_login %}
+    <p style="color: red">账号或者密码错误</p>
+{% endif %}
+
+</body>
+</html>

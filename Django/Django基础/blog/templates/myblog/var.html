@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>name1:</h2> {{ name1 }}
+<h2>name2:</h2>{{ name2 }}
+<hr>
+{{ list }}
+{{ list.2 }}  {# 取第三个元素 #}
+{{ list.5 }}  {# 取不到会填充为空  单行注释   #}
+{% if list.5 %}
+    list.5存在
+    {% else %}
+    list.5不存在
+{% endif %}
+
+
+<hr>
+{{ dic }}
+{{ dic.nam1 }}
+<hr>
+{{ var_test }}
+
+{# 自定义不了变量 #}
+{#{{ var s = 2 }}#}
+</body>
+</html>

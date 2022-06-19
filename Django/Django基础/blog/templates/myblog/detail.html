@@ -1,0 +1,27 @@
+{% extends "myblog/base.html" %}
+
+
+{% block head %}
+    <title>{{ p.title }}</title>
+{% endblock %}
+
+
+{% block body %}
+    {{block.super}}  {# 调用父类中的模块中html #}
+
+    <h3>这是详情页</h3>
+
+    <h1>标题：{{ p.title }}</h1>
+    <hr>
+    文章内容：<br>
+    {{ p.content|safe }}  {# 富文本编辑器中的标签需要禁止转义 #}
+    <hr>
+
+    <div style="color: red">
+        地址：{{ addr }}
+        年龄：{{ age }}
+    </div>
+{% endblock %}
+
+
+
