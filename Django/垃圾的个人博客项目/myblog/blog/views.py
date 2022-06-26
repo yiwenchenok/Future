@@ -25,7 +25,6 @@ def is_login(func):
             return func(request,*args,**kwargs)
         else:
             return redirect('login')
-
     return inner
 
 
@@ -233,31 +232,20 @@ class PostSerachView(SearchView):
         history_hop_post = Post.objects.all().order_by('-look')[:5]
         conte['sen'] = sen
         conte['history_hop_post'] = history_hop_post
-
         print(conte)
         return conte
 
-
-
-
-
-
-
-
-
-@is_login
+@is_login #拦截器
 def detail(request):
     sen_all = Sentence.objects.all()
     sen = random.choice(sen_all)
     #历史热门推荐
     history_hop_post = Post.objects.all().order_by('-look')[:5]
-
     conte = {
         "sen":sen,
         "history_hop_post":history_hop_post,
     }
     id = request.GET.get("id")
-
     # 获取到对应id的文章
     detai_post = get_object_or_404(Post, pk=id)
     # 获取上一篇文章 python基础：索引会有越界，切片没有越界错误
@@ -266,10 +254,23 @@ def detail(request):
     next_post = Post.objects.filter(id__gt=id)[:1]
     #todo:相关推荐
     relation_post = Post.objects.filter(classify=detai_post.classify).exclude(id=detai_post.id).order_by("-look")[:8]
+    # 基于标签做推荐
+    tags = detai_post.tags.all()
+    tag_post_list_all = []
+    tag_post_list_all.extend(relation_post)  # 列表后追加一个列表
+    random_post_list = []
+    if tag_post_list_all:
+        for i in range(8):
+            post = random.choice(tag_post_list_all)
+            if post not in random_post_list:
+                random_post_list.append(post)
+    for tag in tags:
+        tag_post_list = tag.post_set.all()  # 通过一个标签对象，拿到关联的文章
+        tag_post_list_all.extend(tag_post_list)  # 列表后追加一个列表
     conte["detail_post"] = detai_post
     conte["pre_post"] = pre_post
     conte["next_post"] = next_post
-    conte["relation_post"] = relation_post
+    conte["relation_post"] = random_post_list
     return render(request,"content.html",context=conte)
 
 
