@@ -1,0 +1,9 @@
+{# 宏的使用 #}
+{% macro inp(type,name,value="") %}
+    <input type="{{type}}" name="{{name}}" value="{{ value }}">
+{% endmacro %}
+
+
+{% macro myh1(value="") %}
+    <h1>{{ value }}</h1>
+{% endmacro %}

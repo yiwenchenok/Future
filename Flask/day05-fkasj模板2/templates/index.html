@@ -1,0 +1,28 @@
+{% extends 'common/base.html' %}
+
+
+
+{% block body %}
+    {# 调用父模板中的内容 #}
+    {{ super()  }}
+
+    <form action="">
+        <input type="text" name="username" value="">
+        <input type="password" name="password" value="">
+        <input type="radio" name="gender" value="1">
+        <input type="radio" name="gender" value="0">
+    </form>
+
+    <hr>
+
+    {#{% from "macro.html" import inp as inp %}#}
+    {% import "common/macro.html" as inp %}
+
+    <form action="">
+        {{ inp.inp("text","username") }}
+        {{ inp.inp("password","password") }}
+        {{ inp.inp("radio","gender","1") }}
+        {{ inp.inp("radio","gender","0") }}
+    </form>
+{% endblock %}
+

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        #username{
+            background-color: #0ff;
+            font-weight: bold;
+        }
+        
+        
+    </style>
+</head>
+<body>
+<form action="/" method="post">
+
+    {{ form.csrf_token }}
+
+    {{ form.username.label }}：{{ form.username }}<br>
+    {{ form.password.label }}：{{ form.password }}<br>
+    {{ form.check_password.label }}：{{ form.check_password }}<br>
+    {{ form.select.label }}：{{ form.select }}<br>
+    {{ form.radio.label }}：{{ form.radio }}<br>
+    {{ form.submit }}<br>
+
+
+</form>
+
+
+
+
+
+
+
+</body>
+</html>

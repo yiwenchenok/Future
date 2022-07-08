@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+</head>
+<body>
+{{ 11|filter_my }}
+<hr>
+{{ [1,2,3,4,5]|cut_list(2,6) }}
+<hr>
+{{ html|safe }}
+
+
+{{"%.5E"|format(3.14159265)}}
+
+<h1>{{ name|truncate(10) }}</h1>
+<h1>{{ age }}</h1>
+
+
+
+{% set name2 = "哈哈哈哈" %}
+{% set lis = [1,2,3,4,5,6] %}
+{% set dic = {"a":[1,2,3,4,5,6],'b':"我要吃肉肉" } %}
+
+
+{{ lis * 3 }} {# 同python的用法 #}
+{{ lis+lis }}
+{{ '123' + '456' }}
+<hr>
+{{ '123' ~ '456' }}
+
+{% set aaa=100 %}
+{{ aaa in lis }}
+
+
+{{ name2 }}
+
+{% for item in lis %}
+    {% if loop.index == 1 %}
+        <h1>编号：{{ item }}</h1>
+    {% else %}
+        编号：{{ item }}
+    {% endif %}
+{% endfor %}
+
+<hr>
+{% for item in dic["a"] %}
+    编号：{{ item }}
+{% endfor %}
+
+{% for key,value in dic.items() %}
+    <p>{{ key }}:{{ value }}</p>
+{% endfor %}
+
+
+{# 局部变量 #}
+{% with dic2={"a":1,"b":2} %}
+    {{ dic2 }}
+    {{ dic2 }}
+{% endwith %}
+
+<hr>
+
+{{ dic2 }}
+
+
+</body>
+
+
+
+
+
+</html>

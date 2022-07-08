@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>我是register</h1>
+
+{% import "common/macro.html" as inp %}  {# 导入宏 #}
+<form action="">
+    {{inp.inp("text","username")}}
+    {{inp.inp("password","password")}}
+    {{inp.inp("radio","gender","1")}}
+    {{inp.inp("radio","gender","0")}}
+</form>
+
+<hr>
+
+{# 包含的使用 #}
+{#{% include 'form.html' ignore missing %}#}
+{% include 'common/form.html' %}
+
+
+{{ inp.myh1("我就是一个宏") }}
+
+
+
+</body>
+</html>

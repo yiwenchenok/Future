@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电影投票</title>
+</head>
+<body>
+
+<ul>
+    {% for m in m_all %}
+        <li style="background: rgba(0,0,1,0.3);">
+            <p>电影名称：{{ m.name }}</p>
+            <p>演员列表：{{ m.cast }}</p>
+            {#            <a href="/voted?m_id={{ m.id }}">GET方式：给{{ m.name }}投票</a>#}
+            <p><a href="{{ url_for("vote",id=m.id) }}">动态路由方式：给{{ m.name }}投票</a></p>
+        </li>
+
+    {% endfor %}
+</ul>
+<hr>
+{% if session.is_vote %}
+    <h3>投票结果：</h3>
+    {% for m in m_all %}
+        <p>《{{ m.name }}》得票：{{ m.votes }}</p>
+    {% endfor %}
+    {% else %}
+    <span style="color: red">投票之后可以看到投票结果</span>
+{% endif %}
+
+<h3>留言：</h3>
+<form action="/" method="post">
+    {{ form.csrf_token }}
+    {{ form.content.label }}:{{ form.content }}
+    {{ form.submit }}
+
+</form>
+
+{% for i in msg %}
+    <p>网友{{ i.cast }}留言：{{ i.content }}</p>
+{% endfor %}
+
+
+</body>
+</html>

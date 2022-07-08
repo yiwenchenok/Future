@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>我是flash</h2>
+
+{# flash使用 #}
+{% for foo in get_flashed_messages() %}
+    <p>{{ foo }}</p>
+{% endfor %}
+<hr>
+{% for foo in get_flashed_messages() %}
+    <p>{{ foo }}</p>
+{% endfor %}
+
+{# session的使用 #}
+{{ session.get("username") }}
+
+{# config #}
+{{ config.get("DESC") }}
+
+
+{# url_for #}
+<a href="{{ url_for("index") }}">回到主页</a>
+
+{# request #}
+{{ request.args.get('name') }}
+{{ request.args.get('age') }}
+
+
+</body>
+</html>
