@@ -124,8 +124,6 @@ HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = 2
 
 
-
-
 #Redis配置
 REDIS_HOST = "127.0.0.1"
 REDIS_PORT = 6379
