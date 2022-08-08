@@ -95,7 +95,6 @@ def detail(request,id):
     # p = Post.objects.get(pk=id)  # 获取主键id为url所传的num的文章实例
     p = get_object_or_404(Post,pk=id) # 获取主键id为url所传的num的文章实例  推荐  没查询到就返回404
     return render(request, 'myblog/detail.html', context={'p':p, 'addr': "广州", "age":18})
-
 #todo:类视图的写法
 from django.views.generic import ListView
 class Index(ListView):
